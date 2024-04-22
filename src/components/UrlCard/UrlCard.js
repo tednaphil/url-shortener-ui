@@ -1,4 +1,6 @@
 import React from 'react';
+import './UrlCard.css';
+
 
 function UrlCard({title, shortUrl, longUrl}) {
     return (

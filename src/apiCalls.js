@@ -29,7 +29,7 @@ export const postUrl = (newUrl) => {
           return response.json()
         }
       })
-      .then(data => console.log(data))
+      // .then(data => console.log(data))
       .catch(err => {
         throw new Error(`${err}`)
       })
