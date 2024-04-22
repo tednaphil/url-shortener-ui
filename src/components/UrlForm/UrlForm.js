@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function UrlForm({postUrl, addUrl}) {
+function UrlForm({ addUrl, urls }) {
   const [title, setTitle] = useState('');
   const [urlToShorten, setUrlToShorten] = useState('');
+  const [error, setError] = useState('')
 
   const handleSubmit = e => {
     e.preventDefault();
-    const urlSubmission = makeRequestBody()
-    // console.log(urlSubmission)
-    //post url
-    // postUrl(urlSubmission)
-    addUrl(urlSubmission)
-    clearInputs();
+    if (title.length && urlToShorten.length > 8) {
+      const urlSubmission = makeRequestBody()
+      // console.log(urlSubmission)
+      addUrl(urlSubmission)
+      clearInputs();
+    } else {
+      setError('Please complete the form')
+    }
   }
 
   const clearInputs = () => {
@@ -25,6 +28,10 @@ function UrlForm({postUrl, addUrl}) {
       title,
     }
   }
+
+  useEffect(() => {
+    setError('')
+  }, [urls])
 
   return (
     <form>
@@ -47,6 +54,7 @@ function UrlForm({postUrl, addUrl}) {
       <button onClick={e => handleSubmit(e)}>
         Shorten Please!
       </button>
+      {error && <h2>Please complete the form</h2>}
     </form>
   )
 }

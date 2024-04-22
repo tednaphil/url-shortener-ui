@@ -19,12 +19,9 @@ const UrlContainer = ({urls, error}) => {
     }
   })
 
-  // console.log(urls)
-
   return (
     <section className='url-container'>
       { list.length ? list : <p>No urls yet! Find some to shorten!</p> }
-      {/* {list} */}
     </section>
   )
 }

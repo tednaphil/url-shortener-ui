@@ -7,7 +7,6 @@ export const getUrls = () => {
           return response.json()
         }
       })
-      // .then(data => console.log(data))
       .catch(err => {
         throw new Error(`${err}`)
       })
@@ -20,7 +19,6 @@ export const postUrl = (newUrl) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(newUrl)
-
   })
       .then(response => {
         if (!response.ok) {
@@ -29,7 +27,6 @@ export const postUrl = (newUrl) => {
           return response.json()
         }
       })
-      // .then(data => console.log(data))
       .catch(err => {
         throw new Error(`${err}`)
       })

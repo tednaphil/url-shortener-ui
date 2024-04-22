@@ -11,13 +11,10 @@ function App () {
 
   useEffect(() => {
     getUrls()
-    // .then(data => console.log(data.urls))
     .then(data => setUrls(data.urls))
     .catch(err => {
       setError(err)
     })
-    // console.log(urls)
-    // console.log(error)
   }, [])
 
   // console.log(urls)
@@ -28,11 +25,11 @@ function App () {
   }
 
   return (
-    <ErrorBoundary fallback={<div>Something went wrong!</div>}>
+    <ErrorBoundary fallback={<div>{`Something went wrong! ${error}`}</div>}>
       <main className="App">
         <header>
           <h1>URL Shortener</h1>
-          <UrlForm postUrl={postUrl} addUrl={addUrl}/>
+          <UrlForm addUrl={addUrl} urls={urls}/>
         </header>
 
         <UrlContainer urls={urls} error={error}/>
