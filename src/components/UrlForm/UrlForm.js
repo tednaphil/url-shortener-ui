@@ -51,7 +51,7 @@ function UrlForm({ addUrl, urls }) {
         onChange={e => setUrlToShorten(e.target.value)}
       />
 
-      <button onClick={e => handleSubmit(e)}>
+      <button onClick={e => handleSubmit(e)} className='submit-button'>
         Shorten Please!
       </button>
       {error && <h2>Please complete the form</h2>}
