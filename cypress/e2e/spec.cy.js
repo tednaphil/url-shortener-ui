@@ -25,6 +25,11 @@ describe('Url Shortener', () => {
     .get('.url').last().contains('p', 'https://youngdays.com/products/saint-james-onesie?variant=44242126930160&currency=USD&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&gad_source=1&gclid=Cj0KCQjwlZixBhCoARIsAIC745DlnoARAsD2V9ZJ1YZ5YajquEz0lK2AAwWEuHXU3lT6-KQ5laAComwaAn4qEALw_wcB')
   })
 
+  it('Gives feedback if attempt made to submit incomplete form', () => {
+    cy.get('button').click()
+    .get('h2').contains('Please complete the form')
+  })
+
   it('Accepts and displays user submissions', () => {
     cy.get('input[name="title"]').type('hannah anderson').should('have.value', 'hannah anderson')
     .get('input[name="urlToShorten"]').type('https://www.hannaandersson.com/baby-clothes/?utm_source=google&utm_medium=cpc&utm_campaign=19634079300&utm_content=&utm_term=&gclid=Cj0KCQjwlZixBhCoARIsAIC745CTSQ3Kg3H5aWJsFSlTDJMYQNASoO-rGUJKf9Mp50nfseGfe62gURQaAtNIEALw_wcB').should('have.value', 'https://www.hannaandersson.com/baby-clothes/?utm_source=google&utm_medium=cpc&utm_campaign=19634079300&utm_content=&utm_term=&gclid=Cj0KCQjwlZixBhCoARIsAIC745CTSQ3Kg3H5aWJsFSlTDJMYQNASoO-rGUJKf9Mp50nfseGfe62gURQaAtNIEALw_wcB')
