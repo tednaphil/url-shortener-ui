@@ -3,6 +3,7 @@ import './App.css';
 import { getUrls } from '../../apiCalls';
 import UrlContainer from '../UrlContainer/UrlContainer';
 import UrlForm from '../UrlForm/UrlForm';
+import { ErrorBoundary } from 'react-error-boundary';
 
 function App () {
   const [urls, setUrls] = useState([]);
@@ -17,14 +18,16 @@ function App () {
   }, [])
 
   return (
-    <main className="App">
-      <header>
-        <h1>URL Shortener</h1>
-        <UrlForm />
-      </header>
+    <ErrorBoundary fallback={<div>Something went wrong!</div>}>
+      <main className="App">
+        <header>
+          <h1>URL Shortener</h1>
+          <UrlForm />
+        </header>
 
-      <UrlContainer urls={urls} error={error}/>
-    </main>
+        <UrlContainer urls={urls} error={error}/>
+      </main>
+    </ErrorBoundary>
   );
 }
 
