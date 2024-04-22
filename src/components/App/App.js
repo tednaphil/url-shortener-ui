@@ -11,11 +11,16 @@ function App () {
 
   useEffect(() => {
     getUrls()
-    // .then(data => setUrls(data))
-    // .catch(err => {
-    //   setError(err)
-    // })
+    // .then(data => console.log(data.urls))
+    .then(data => setUrls(data.urls))
+    .catch(err => {
+      setError(err)
+    })
+    // console.log(urls)
+    // console.log(error)
   }, [])
+
+  // console.log(urls)
 
   return (
     <ErrorBoundary fallback={<div>Something went wrong!</div>}>
