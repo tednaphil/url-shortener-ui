@@ -42,4 +42,20 @@ describe('Url Shortener', () => {
     .get('.url').last().contains('a', 'http://localhost:3001/useshorturl/3')
     .get('.url').last().contains('p', 'https://www.hannaandersson.com/baby-clothes/?utm_source=google&utm_medium=cpc&utm_campaign=19634079300&utm_content=&utm_term=&gclid=Cj0KCQjwlZixBhCoARIsAIC745CTSQ3Kg3H5aWJsFSlTDJMYQNASoO-rGUJKf9Mp50nfseGfe62gURQaAtNIEALw_wcB')
   })
+
+  it('Displays error message if network request(s) fail', () => {
+    cy.intercept('GET', 'http://localhost:3001/api/v1/urls', {
+      statusCode: 500,
+    }).as('failedGet')
+    cy.intercept('POST', 'http://localhost:3001/api/v1/urls', {
+      statusCode: 500,
+    }).as('failedPost')
+    .visit('http://localhost:3000/')
+    .get('.error-message').contains('Something went wrong! Failed to GET - 500')
+    .get('input[name="title"]').type('hannah anderson').should('have.value', 'hannah anderson')
+    .get('input[name="urlToShorten"]').type('https://www.hannaandersson.com/baby-clothes/?utm_source=google&utm_medium=cpc&utm_campaign=19634079300&utm_content=&utm_term=&gclid=Cj0KCQjwlZixBhCoARIsAIC745CTSQ3Kg3H5aWJsFSlTDJMYQNASoO-rGUJKf9Mp50nfseGfe62gURQaAtNIEALw_wcB').should('have.value', 'https://www.hannaandersson.com/baby-clothes/?utm_source=google&utm_medium=cpc&utm_campaign=19634079300&utm_content=&utm_term=&gclid=Cj0KCQjwlZixBhCoARIsAIC745CTSQ3Kg3H5aWJsFSlTDJMYQNASoO-rGUJKf9Mp50nfseGfe62gURQaAtNIEALw_wcB')
+    .get('button').click()
+    .get('.error-message').contains('Something went wrong! Failed to POST - 500')
+
+  })
 })

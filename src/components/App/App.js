@@ -22,17 +22,20 @@ function App () {
   const addUrl = (newUrl) => {
     postUrl(newUrl)
       .then(data => setUrls([...urls, data]))
+      .catch(err => {
+        setError(err)
+      })
   }
 
   return (
-    <ErrorBoundary fallback={<div>{`Something went wrong! ${error}`}</div>}>
+    <ErrorBoundary fallback={<div>{`Something went wrong! ${error.message}`}</div>}>
       <main className="App">
         <header>
           <h1>URL Shortener</h1>
           <UrlForm addUrl={addUrl} urls={urls}/>
         </header>
-
-        <UrlContainer urls={urls} error={error}/>
+        {error ? <div className='error-message'>{`Something went wrong! ${error.message}`}</div> : <UrlContainer urls={urls} error={error}/>}
+        {/* <UrlContainer urls={urls} error={error}/> */}
       </main>
     </ErrorBoundary>
   );

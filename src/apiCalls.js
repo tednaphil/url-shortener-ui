@@ -8,7 +8,7 @@ export const getUrls = () => {
         }
       })
       .catch(err => {
-        throw new Error(`${err}`)
+        throw new Error(`Failed to GET - ${err.message}`)
       })
 }
 
@@ -28,7 +28,7 @@ export const postUrl = (newUrl) => {
         }
       })
       .catch(err => {
-        throw new Error(`${err}`)
+        throw new Error(`Failed to POST - ${err.message}`)
       })
 }
 

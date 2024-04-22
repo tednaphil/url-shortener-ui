@@ -7,6 +7,7 @@ function UrlCard({title, shortUrl, longUrl}) {
         <div className='url'>
             <h3>{title}</h3>
             <a href={shortUrl} target="blank">{shortUrl}</a>
+            <hr/>
             <p>{longUrl}</p>
         </div>
     )
