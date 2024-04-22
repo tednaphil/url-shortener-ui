@@ -3,7 +3,7 @@ import './UrlContainer.css';
 import UrlCard from '../UrlCard/UrlCard';
 // import { ErrorBoundary } from 'react-error-boundary';
 
-const UrlContainer = ({urls, error}) => {
+const UrlContainer = ({urls, error, removeUrl}) => {
 
   const list = urls.map(url => {
     // console.log('url', url)
@@ -11,9 +11,11 @@ const UrlContainer = ({urls, error}) => {
       return (
         <UrlCard
           key={url.id}
+          id={url.id}
           title={url.title}
           longUrl={url.long_url}
           shortUrl={url.short_url}
+          removeUrl={removeUrl}
         />
       )
     }

@@ -32,4 +32,11 @@ export const postUrl = (newUrl) => {
       })
 }
 
-export default { getUrls, postUrl };
+export const deleteUrl = (id) => {
+  fetch(`http://localhost:3001/api/v1/urls/${id}`, {
+    method: 'DELETE'
+  })
+  .catch(err => console.log(err))
+}
+
+export default { getUrls, postUrl, deleteUrl };
