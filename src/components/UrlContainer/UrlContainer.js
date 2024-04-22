@@ -25,7 +25,7 @@ const UrlContainer = ({urls, error}) => {
   // })
 
   const list = urls.map(url => {
-    console.log('url', url)
+    // console.log('url', url)
     return (
       <UrlCard
         key={url.id}
@@ -40,9 +40,8 @@ const UrlContainer = ({urls, error}) => {
 
   return (
     <section>
-      {/* { urlList.length ? {urlList} : <p>No urls yet! Find some to shorten!</p> } */}
-      {list}
-      
+      { list.length ? list : <p>No urls yet! Find some to shorten!</p> }
+      {/* {list} */}
     </section>
   )
 }

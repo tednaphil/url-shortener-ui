@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { getUrls } from '../../apiCalls';
+import { getUrls, postUrl } from '../../apiCalls';
 import UrlContainer from '../UrlContainer/UrlContainer';
 import UrlForm from '../UrlForm/UrlForm';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -22,12 +22,17 @@ function App () {
 
   // console.log(urls)
 
+  const addUrl = (newUrl) => {
+    postUrl(newUrl)
+      .then(data => setUrls([...urls, data]))
+  }
+
   return (
     <ErrorBoundary fallback={<div>Something went wrong!</div>}>
       <main className="App">
         <header>
           <h1>URL Shortener</h1>
-          <UrlForm />
+          <UrlForm postUrl={postUrl} addUrl={addUrl}/>
         </header>
 
         <UrlContainer urls={urls} error={error}/>
